@@ -3,26 +3,58 @@ package com.example.user.brad25;
 import android.animation.ObjectAnimator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView apple;
     private ObjectAnimator anim1;
+    private View container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        container = findViewById(R.id.activity_main);
         apple = (ImageView)findViewById(R.id.apple);
     }
 
     public void test1(View v){
-        anim1 = ObjectAnimator.ofFloat(apple,"y", 0,800,0);
+        anim1 = ObjectAnimator.ofFloat(apple,"x", 0,800);
+        anim1.setDuration(2000);
+        anim1.setRepeatCount(0);
+        anim1.start();
+    }
+    public void test2(View v){
+        anim1 = ObjectAnimator.ofFloat(apple,"y", 0,800);
         anim1.setDuration(2000);
         anim1.setRepeatCount(0);
         anim1.start();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.v("brad", "onStart()");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.v("brad", "onResume()");
+        Log.v("brad", "＞" +container.getWidth() + " x " + container.getHeight());
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        Log.v("brad", "onWindowFocusChanged()");
+        if (hasFocus) {
+            Log.v("brad", container.getWidth() + " x " + container.getHeight());
+        }else{
+            Log.v("brad", "onWindowFocusChanged():false");
+        }
+    }
 }
