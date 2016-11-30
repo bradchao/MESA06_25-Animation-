@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView apple;
-    private ObjectAnimator anim1;
+    private ObjectAnimator anim1, anim2, anim3, anim4, anim5;
     private View container;
 
     @Override
@@ -32,6 +32,16 @@ public class MainActivity extends AppCompatActivity {
         anim1.setDuration(2000);
         anim1.setRepeatCount(0);
         anim1.start();
+    }
+
+    public void test3(View v){
+        anim1 = ObjectAnimator.ofFloat(apple,"x", 0,800);
+        anim2 = ObjectAnimator.ofFloat(apple,"y", 0,800);
+        //anim3 = ObjectAnimator.ofFloat(apple,"alpha", 0f,1f);
+        anim4 = ObjectAnimator.ofFloat(apple,"rotationX", 0f,360f,0f,360f);
+        anim5 = ObjectAnimator.ofFloat(apple,"rotationY", 0f,360f,0f,360f);
+
+
     }
 
     @Override
