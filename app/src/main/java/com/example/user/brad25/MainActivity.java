@@ -1,10 +1,12 @@
 package com.example.user.brad25;
 
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationSet;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,10 +39,15 @@ public class MainActivity extends AppCompatActivity {
     public void test3(View v){
         anim1 = ObjectAnimator.ofFloat(apple,"x", 0,800);
         anim2 = ObjectAnimator.ofFloat(apple,"y", 0,800);
-        //anim3 = ObjectAnimator.ofFloat(apple,"alpha", 0f,1f);
+        anim3 = ObjectAnimator.ofFloat(apple,"alpha", 0f,1f);
         anim4 = ObjectAnimator.ofFloat(apple,"rotationX", 0f,360f,0f,360f);
         anim5 = ObjectAnimator.ofFloat(apple,"rotationY", 0f,360f,0f,360f);
 
+        AnimatorSet set = new AnimatorSet();
+        set.playSequentially(anim1,anim2,anim3,anim4,anim5);
+        //set.playTogether(anim1,anim2,anim3,anim4,anim5);
+        set.setDuration(3*1000);
+        set.start();
 
     }
 
